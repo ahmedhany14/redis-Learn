@@ -16,7 +16,15 @@ export const getItem = async (id: string) => {
     return deserialization(item, id);
 };
 
-export const getItems = async (ids: string[]) => { };
+export const getItems = async (ids: string[]) => {
+
+    let results = await Promise.all(ids.map(async (id) => {
+        return await getItem(id);
+    }));
+
+    results = results.filter((item) => item !== null);
+    return results;
+};
 
 export const createItem = async (attrs: CreateItemAttrs) => {
     const id = genId();
