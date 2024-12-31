@@ -1,0 +1,113 @@
+{
+  "name": "Sets",
+  "fileName": "My Trained Beautiful Notebook.json",
+  "createdAt": "2024-12-31T20:18:23.964Z",
+  "cells": [
+    {
+      "id": "5ed471d8090c235f",
+      "type": "markdown",
+      "content": "**Notes**\n\n* Add some notes here\n* Use markdown"
+    },
+    {
+      "id": "7969e73be239a0ce",
+      "type": "redis",
+      "content": "SADD colors red\n"
+    },
+    {
+      "id": "1735676452331",
+      "type": "redis",
+      "content": "SADD colors green\n"
+    },
+    {
+      "id": "1735676493413",
+      "type": "redis",
+      "content": "SMEMBERS colors "
+    },
+    {
+      "id": "1735676520686",
+      "type": "redis",
+      "content": "SREM colors red"
+    },
+    {
+      "id": "1735676534714",
+      "type": "redis",
+      "content": "SMEMBERS colors "
+    },
+    {
+      "id": "1735676670969",
+      "type": "redis",
+      "content": "SADD colors1 red blur orange\nSADD colors2 red orange purple"
+    },
+    {
+      "id": "1735677110070",
+      "type": "redis",
+      "content": "SMEMBERS colors1 \nSMEMBERS colors2"
+    },
+    {
+      "id": "1735676697580",
+      "type": "redis",
+      "content": "SUNION colors1 colors2\n\n// merge them"
+    },
+    {
+      "id": "1735677136785",
+      "type": "redis",
+      "content": "SMEMBERS colors1 \nSMEMBERS colors2"
+    },
+    {
+      "id": "1735676736521",
+      "type": "redis",
+      "content": "SINTER colors1 colors2\n\n// intersection in the sets"
+    },
+    {
+      "id": "1735677216658",
+      "type": "redis",
+      "content": "SDIFF colors1 colors2 \n\n// the elemetns in the first set and not in rest"
+    },
+    {
+      "id": "1735677389323",
+      "type": "redis",
+      "content": "SINTERSTORE intersection colors1 colors2\n\n// store the intersection in the first one"
+    },
+    {
+      "id": "1735677388461",
+      "type": "redis",
+      "content": "SMEMBERS intersection "
+    },
+    {
+      "id": "1735677531521",
+      "type": "redis",
+      "content": "SUNIONSTORE union colors1 colors2 \n\n// store the union in the first one"
+    },
+    {
+      "id": "1735677548571",
+      "type": "redis",
+      "content": "SMEMBERS union "
+    },
+    {
+      "id": "1735677658522",
+      "type": "redis",
+      "content": "SISMEMBER union purple\nSISMEMBER union not:purple\n\n// Check if there this member in the set or not"
+    },
+    {
+      "id": "1735677992543",
+      "type": "redis",
+      "content": "SSCAN union 3 COUNT 2"
+    },
+    {
+      "id": "1735678227261",
+      "type": "redis",
+      "content": "\nSRANDMEMBER union // get random element"
+    },
+    {
+      "id": "1735678251481",
+      "type": "redis",
+      "content": "SMEMBERS union\nSPOP  union // get random element and then remove it'\nSMEMBERS union\n"
+    },
+    {
+      "id": "1735678650533",
+      "type": "redis",
+      "content": "SCARD  union\nSADD union newvalue  // count \nSCARD  union\n"
+    }
+  ],
+  "id": "a7006dabda3432da"
+}

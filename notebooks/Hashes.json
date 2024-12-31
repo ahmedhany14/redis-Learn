@@ -1,0 +1,73 @@
+{
+  "name": "Hashes",
+  "fileName": "My Great Safety Notebook.json",
+  "createdAt": "2024-12-21T18:29:09.666Z",
+  "cells": [
+    {
+      "id": "9707929fdb22bc6a",
+      "type": "redis",
+      "content": "HSET company name \"ahmed's company\" age 20 licence \"LK i 123\" mark \"red mark\""
+    },
+    {
+      "id": "1734805829576",
+      "type": "redis",
+      "content": "// Get a key value from a company\nHGET company age\n"
+    },
+    {
+      "id": "1734805880390",
+      "type": "redis",
+      "content": "// Get whole data from company\nHGETALL company"
+    },
+    {
+      "id": "1734806113390",
+      "type": "redis",
+      "content": "HEXISTS company isHere\n\nHEXISTS company age\n"
+    },
+    {
+      "id": "1734806155603",
+      "type": "redis",
+      "content": "HDEL company isHere\n\nHDEL company age\n\nHGETALL company "
+    },
+    {
+      "id": "1734806221459",
+      "type": "redis",
+      "content": "//DEL company "
+    },
+    {
+      "id": "1734806230803",
+      "type": "redis",
+      "content": "// Get whole data from company\nHGETALL company"
+    },
+    {
+      "id": "1734806795413",
+      "type": "redis",
+      "content": "HINCRBY company age 1960"
+    },
+    {
+      "id": "1734806756178",
+      "type": "redis",
+      "content": "// Get whole data from company\nHGETALL company"
+    },
+    {
+      "id": "1734806858494",
+      "type": "redis",
+      "content": "HINCRBY company age -15\n\nHGETALL company"
+    },
+    {
+      "id": "1734806874127",
+      "type": "redis",
+      "content": "HSTRLEN company mark"
+    },
+    {
+      "id": "1734807033880",
+      "type": "redis",
+      "content": "HKEYS company\n "
+    },
+    {
+      "id": "1734807045290",
+      "type": "redis",
+      "content": "HVALS company "
+    }
+  ],
+  "id": "2c2d73aa21b69693"
+}

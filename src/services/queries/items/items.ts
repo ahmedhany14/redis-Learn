@@ -12,7 +12,6 @@ export const getItem = async (id: string) => {
         console.log('No item found', id);
         return null;
     }
-    console.log('Item found', deserialization(item, id));
     return deserialization(item, id);
 };
 
