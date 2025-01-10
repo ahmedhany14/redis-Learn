@@ -1,6 +1,6 @@
 import { client } from '$services/redis';
 import { genId } from '$services/utils';
-import { itemKeys, itemsKeyByView, itemKeyEndAt } from '$services/keys';
+import { itemKeys, itemsKeyByView, itemKeyEndAt, itemsKeyByPrice } from '$services/keys';
 
 import type { CreateItemAttrs } from '$services/types';
 import { DateTime } from 'luxon';
@@ -41,6 +41,10 @@ export const createItem = async (attrs: CreateItemAttrs) => {
 		client.zAdd(itemKeyEndAt(), {
 			value: id,
 			score: attrs.endingAt.toMillis()
+		}),
+		client.zAdd(itemsKeyByPrice(), {
+			value: id,
+			score: 0
 		})
 	]);
 
