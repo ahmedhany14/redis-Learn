@@ -2,13 +2,6 @@ import {
 	client
 } from '$services/redis';
 
-import {
-	itemKeys,
-	itemsKeyByView,
-	itemsKeView
-} from '$services/keys';
-
-
 /*
 why do we use hyperloglog to count views and not use sets?
 
@@ -20,10 +13,29 @@ but with hyperloglog we can store the views with a constant size of 12KB, no mat
  */
 export const incrementView = async (itemId: string, userId: string) => {
 	// increment the view count of the item, increment the view item in an ordered set
+	/*
 	const not_viewed = await  client.pfAdd(itemsKeView(itemId), userId);
 	if (!not_viewed) return;
 	await Promise.all([
 		client.hIncrBy(itemKeys(itemId), 'views', 1),
 		client.zIncrBy(itemsKeyByView(), 1, itemId)
-	]);
+	]);*/
+
+	// convert the function to a lua script
+
+	await client.incrementView(itemId, userId);
+
 };
+
+/*
+we will convert this function to a lua script to make it atomic
+
+1) keys I will use:
+	items:views${itemId} (hyperloglog) -> to store the views of the item
+	items:${itemId} (hash) -> to increment the views of the item in the hash of the item
+	items:views (sorted set) -> increment the views of the item in the sorted set
+
+2) arguments I will use:
+	itemId: the id of the item
+	userId: the id of the user who viewed the item
+ */
