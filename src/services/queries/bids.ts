@@ -41,7 +41,7 @@ But how locks work in Redis?
 
 export const createBid = async (attrs: CreateBidAttrs) => {
 	// implementation of the lock
-	return withLock(attrs.itemId, async () => {
+	return withLock(attrs.itemId, async (signal: any) => {
 		// first, we will fetch the item to check if it exists
 		const item = await getItem(attrs.itemId);
 
@@ -58,6 +58,10 @@ export const createBid = async (attrs: CreateBidAttrs) => {
 		const key = bidHistoryKeys(attrs.itemId);
 		const value = seralizeBid(attrs);
 
+		// await pause(5000)
+		// check signal if the transaction is expired
+		if (signal.expierd) throw new Error('lock expired');
+
 		// create the bid if everything is okay
 		return Promise.all([
 			client.rPush(key, value),
@@ -71,7 +75,6 @@ export const createBid = async (attrs: CreateBidAttrs) => {
 				score: attrs.amount
 			})
 		]);
-
 	});
 
 	/*	return client.executeIsolated(async (isolatedClient) => {
@@ -146,3 +149,9 @@ function deserializeBid(bid: string): any {
 		createdAt: DateTime.fromMillis(parseInt(time))
 	};
 }
+
+const pause = (duration: number) => {
+	return new Promise((resolve) => {
+		setTimeout(resolve, duration);
+	});
+};
